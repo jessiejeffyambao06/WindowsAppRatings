@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <div class="sidebar">
+        <h2 class="logo">Admin Panel</h2>
+        <ul>
+          <li class="active">Dashboard</li>
+        </ul>
+      </div>
+
+      <div class="main">
+        <h1>Customer Feedback Dashboard</h1>
+
+        <div class="stats">
+          <div class="card">
+            <h3>Total Responses</h3>
+            <p id="totalResponses">0</p>
+          </div>
+          <div class="card">
+            <h3>Very Happy</h3>
+            <p id="veryhappy">0</p>
+          </div>
+          <div class="card">
+            <h3>Happy</h3>
+            <p id="happy">0</p>
+          </div>
+          <div class="card">
+            <h3>Neutral</h3>
+            <p id="neutral">0</p>
+          </div>
+          <div class="card">
+            <h3>Dissatisfied</h3>
+            <p id="dissatisfied">0</p>
+          </div>
+          <div class="card">
+            <h3>Very Dissatisfied</h3>
+            <p id="verydissatisfied">0</p>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <h2>Recent Feedback</h2>
+          <table id="table">
+            <thead>
+              <tr>
+                <th>Customer #</th>
+                <th>Date</th>
+                <th>Ratings</th>
+                <th>Feedback</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+  </body>
+</html>

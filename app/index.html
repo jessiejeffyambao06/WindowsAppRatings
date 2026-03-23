@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service Rating</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 id="question"></h2>
+
+      <div class="ratings slide">
+        <div class="emoji" data-value="Very Dissatisfied">
+          <div class="face">😠</div>
+          <p>Very Dissatisfied</p>
+        </div>
+        <div class="emoji" data-value="Dissatisfied">
+          <div class="face">🙁</div>
+          <p>Dissatisfied</p>
+        </div>
+        <div class="emoji" data-value="Neutral">
+          <div class="face">😐</div>
+          <p>Neutral</p>
+        </div>
+        <div class="emoji" data-value="Happy">
+          <div class="face">🙂</div>
+          <p>Happy</p>
+        </div>
+        <div class="emoji" data-value="Very Happy">
+          <div class="face">😁</div>
+          <p>Very Happy</p>
+        </div>
+      </div>
+
+      <div id="feedbackSection" class="hidden slide">
+        <h3>Tell us about your experience</h3>
+        <textarea id="feedback" placeholder="Share your thoughts..."></textarea>
+        <button id="submitBtn">Submit</button>
+      </div>
+
+      <div id="thankYouCard" class="thank-you-card hidden">
+        <h2>Thank You!</h2>
+        <p>Your feedback has been submitted successfully.</p>
+        <div id="summary"></div>
+        <button id="closeCard">Close</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

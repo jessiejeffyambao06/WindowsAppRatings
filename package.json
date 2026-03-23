@@ -1,0 +1,16 @@
+{
+  "name": "windows-app-ratings",
+  "version": "1.0.0",
+  "description": "Emoji rating system with admin dashboard",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^26.6.10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
