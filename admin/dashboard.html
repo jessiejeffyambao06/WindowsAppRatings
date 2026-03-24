@@ -4,49 +4,89 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
+
+    <!-- MODERN FONTS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="dashboard.css" />
   </head>
+
   <body>
     <div class="layout">
       <div class="sidebar">
-        <h2 class="logo">Admin Panel</h2>
-        <ul>
-          <li class="active">Dashboard</li>
+        <!-- LOGO (ADD THIS) -->
+        <div class="logo-container">
+          <div class="logo-icon">🧠</div>
+          <h2 class="logo">Admin Panel</h2>
+        </div>
+
+        <ul class="menu">
+          <li class="active">
+            <span class="icon">📊</span>
+            <span>Dashboard</span>
+          </li>
+
+          <li>
+            <span class="icon">👤</span>
+            <span>Account Settings</span>
+          </li>
+
+          <li>
+            <span class="icon">💬</span>
+            <span>Feedback</span>
+          </li>
         </ul>
+
+        <div class="logout">
+          <span class="icon">🚪</span>
+          <span>Logout</span>
+        </div>
       </div>
 
+      <!-- MAIN -->
       <div class="main">
         <h1>Customer Feedback Dashboard</h1>
 
+        <!-- STATS -->
         <div class="stats">
           <div class="card">
             <h3>Total Responses</h3>
             <p id="totalResponses">0</p>
           </div>
+
           <div class="card">
             <h3>Very Happy</h3>
             <p id="veryhappy">0</p>
           </div>
+
           <div class="card">
             <h3>Happy</h3>
             <p id="happy">0</p>
           </div>
+
           <div class="card">
             <h3>Neutral</h3>
             <p id="neutral">0</p>
           </div>
+
           <div class="card">
             <h3>Dissatisfied</h3>
             <p id="dissatisfied">0</p>
           </div>
+
           <div class="card">
             <h3>Very Dissatisfied</h3>
             <p id="verydissatisfied">0</p>
           </div>
         </div>
 
+        <!-- TABLE -->
         <div class="table-container">
           <h2>Recent Feedback</h2>
+
           <table id="table">
             <thead>
               <tr>
@@ -56,6 +96,7 @@
                 <th>Feedback</th>
               </tr>
             </thead>
+
             <tbody></tbody>
           </table>
         </div>
