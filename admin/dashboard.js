@@ -2,9 +2,8 @@ function loadDashboard() {
   fetch("http://localhost/WindowsAppRatings/backend/get_ratings.php")
     .then((res) => res.json())
     .then((data) => {
-      console.log("DATA FROM API:", data);
-
       const tbody = document.querySelector("#table tbody");
+      tbody.innerHTML = "";
 
       let veryhappy = 0;
       let happy = 0;
@@ -12,17 +11,21 @@ function loadDashboard() {
       let dissatisfied = 0;
       let verydissatisfied = 0;
 
-      tbody.innerHTML = "";
-
+      // ✅ assign permanent number (based sa DB order)
       data.forEach((entry, index) => {
-        // SAFE JSON PARSE
+        entry.customerNumber = index + 1;
+      });
+
+      // ✅ display newest on top
+      const displayData = [...data].reverse();
+
+      displayData.forEach((entry) => {
         let answers = entry.answers;
 
         if (typeof answers === "string") {
           try {
             answers = JSON.parse(answers);
-          } catch (e) {
-            console.error("Invalid JSON:", entry.answers);
+          } catch {
             answers = [];
           }
         }
@@ -42,30 +45,23 @@ function loadDashboard() {
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-                    <td><b>${index + 1}</b></td>
-                    <td>${new Date(entry.timestamp).toLocaleString()}</td>
-                    <td>${ratingsHTML}</td>
-                    <td>${entry.feedback || "-"}</td>
-                `;
+          <td><b>${entry.customerNumber}</b></td>
+          <td>${new Date(entry.timestamp).toLocaleString()}</td>
+          <td>${ratingsHTML}</td>
+          <td>${entry.feedback || "-"}</td>
+        `;
 
         tbody.appendChild(tr);
       });
 
-      // UPDATE COUNTERS
       document.getElementById("totalResponses").innerText = data.length;
       document.getElementById("veryhappy").innerText = veryhappy;
       document.getElementById("happy").innerText = happy;
       document.getElementById("neutral").innerText = neutral;
       document.getElementById("dissatisfied").innerText = dissatisfied;
       document.getElementById("verydissatisfied").innerText = verydissatisfied;
-    })
-    .catch((err) => {
-      console.error("Error loading dashboard:", err);
     });
 }
 
-// INITIAL LOAD
 loadDashboard();
-
-// AUTO REFRESH EVERY 3 SECONDS
 setInterval(loadDashboard, 3000);
