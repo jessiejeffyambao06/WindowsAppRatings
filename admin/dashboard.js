@@ -1,7 +1,18 @@
+// dashboard.js — may session guard at auto-redirect kung nag-expire na ang login
+
 function loadDashboard() {
   fetch("http://localhost/WindowsAppRatings/backend/get_ratings.php")
-    .then((res) => res.json())
+    .then((res) => {
+      // ✅ Kung hindi authorized (403/401), i-redirect sa login
+      if (res.status === 401 || res.status === 403) {
+        window.location.replace("login.php");
+        return null;
+      }
+      return res.json();
+    })
     .then((data) => {
+      if (!data) return;
+
       const tbody = document.querySelector("#table tbody");
       tbody.innerHTML = "";
 
@@ -11,12 +22,12 @@ function loadDashboard() {
       let dissatisfied = 0;
       let verydissatisfied = 0;
 
-      // ✅ assign permanent number (based sa DB order)
+      // ✅ Assign permanent number (based sa DB order)
       data.forEach((entry, index) => {
         entry.customerNumber = index + 1;
       });
 
-      // ✅ display newest on top
+      // ✅ Display newest on top
       const displayData = [...data].reverse();
 
       displayData.forEach((entry) => {
@@ -43,7 +54,6 @@ function loadDashboard() {
         });
 
         const tr = document.createElement("tr");
-
         tr.innerHTML = `
           <td><b>${entry.customerNumber}</b></td>
           <td>${new Date(entry.timestamp).toLocaleString()}</td>
@@ -60,6 +70,9 @@ function loadDashboard() {
       document.getElementById("neutral").innerText = neutral;
       document.getElementById("dissatisfied").innerText = dissatisfied;
       document.getElementById("verydissatisfied").innerText = verydissatisfied;
+    })
+    .catch((err) => {
+      console.error("Error loading dashboard:", err);
     });
 }
 

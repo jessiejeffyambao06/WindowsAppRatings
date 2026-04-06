@@ -1,3 +1,4 @@
 node_modules/
 data/ratings.json
 .vscode/
+.env
